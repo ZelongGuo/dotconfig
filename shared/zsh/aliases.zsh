@@ -2,7 +2,7 @@ alias vim='nvim'
 alias vi='nvim'
 # alias ra='ranger'
 # alias ra='ranger --choosedir=$HOME/.rangerdir;LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias ra='yazi'
+# alias ra='yazi'
 alias t='tmux'
 alias g='lazygit'
 alias f='fzf'
@@ -13,3 +13,13 @@ alias t2='tmux new -s 2'
 # # PYTHON
 # alias python='python3' # /opt/homebrew/bin/python3 also usr/bin
 # alias pip='pip3'       # /opt/homebrew/bin/pip3 also usr/bin
+
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+alias ra='y'
