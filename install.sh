@@ -153,6 +153,12 @@ if [[ -f "$DOTCONFIG_DIR/shared/zsh/zimrc" ]]; then
     echo -e "  ${GREEN}✓${NC} .zimrc → ~/dotconfig/shared/zsh/zimrc"
 fi
 
+# Link .tmux.conf
+if [[ -f "$DOTCONFIG_DIR/shared/tmux/.tmux.conf" ]]; then
+    ln -sf "$DOTCONFIG_DIR/shared/tmux/.tmux.conf" "$HOME/.tmux.conf"
+    echo -e "  ${GREEN}✓${NC} .tmux.conf → ~/dotconfig/shared/tmux/.tmux.conf"
+fi
+
 # -------------------------------------------------------------------
 # Summary
 # -------------------------------------------------------------------
