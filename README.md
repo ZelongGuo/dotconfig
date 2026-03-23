@@ -7,21 +7,21 @@ Cross-platform configuration files for macOS and Linux.
 ```
 ~/dotconfig/
 ├── shared/          # Cross-platform configs → ~/.config/
-│   ├── nvim/
-│   ├── tmux/
-│   ├── zsh/
-│   ├── kitty/
-│   └── ...
+│   ├── kitty/       # Terminal emulator
+│   ├── lazygit/     # Git UI
+│   ├── ranger/      # File manager
+│   ├── tmux/        # Terminal multiplexer
+│   ├── yazi/        # File manager
+│   └── zsh/         # Shell configuration
 ├── macos/           # macOS-specific configs → ~/.config/
-│   ├── aerospace/
-│   ├── brew/
-│   └── zsh/
+│   ├── aerospace/   # Tiling window manager
+│   └── zsh/         # macOS-specific zsh config
 ├── linux/           # Linux-specific configs → ~/.config/
-│   ├── zsh/
-│   └── wm/
-├── scripts/
-├── install.sh
-└── Brewfile
+│   ├── wm/          # Window manager configs
+│   └── zsh/         # Linux-specific zsh config
+├── install.sh       # Installation script
+├── Brewfile         # macOS packages
+└── README.md
 ```
 
 ## Installation
@@ -38,26 +38,28 @@ cd dotconfig
 
 The installer will:
 1. Detect your OS (macOS or Linux)
-2. Create symlinks for shared configs
-3. Create symlinks for OS-specific configs
-4. Create home directory symlinks (.zshrc, .gitconfig)
+2. Create symlinks for shared configs in `~/.config/`
+3. Create symlinks for OS-specific configs in `~/.config/`
+4. Create home directory symlinks (`.zshrc`, `.zimrc`)
+
+**Note:** `nvim` is maintained separately and is not included.
 
 ## Usage
 
 ### Editing configs
 Edit files directly in `~/dotconfig/`:
 ```bash
-vim ~/dotconfig/shared/nvim/init.lua
+vim ~/dotconfig/shared/zsh/zshrc
 ```
 
-### Deployment
-Configs are symlinked, so changes take effect immediately.
-For a full re-deployment:
+Changes take effect immediately (files are symlinked).
+
+### Re-deployment
 ```bash
 ~/dotconfig/install.sh
 ```
 
-### Syncing
+### Syncing changes
 ```bash
 cd ~/dotconfig
 git add .
