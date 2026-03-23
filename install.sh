@@ -4,6 +4,7 @@
 # ===================================================================
 # Creates symlinks from ~/dotconfig to ~/.config and ~/
 
+# Exit if there is any error thrown
 set -e
 
 # -------------------------------------------------------------------
