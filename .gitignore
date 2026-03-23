@@ -1,0 +1,30 @@
+# Vim
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.backup.*
+
+# IDE
+.vscode/
+.idea/
+
+# Submodules - remove nested .git directories
+shared/nvim/.git
+shared/ranger/plugins/ranger_devicons/.git
+
+# Cache
+**/__pycache__/
+*.pyc
+*.pyo
+
+# iTerm2 cache
+macos/iterm2/AppSupport/SavedState/
+macos/iterm2/AppSupport/parsers/
+macos/iterm2/AppSupport/*.socket
+macos/iterm2/AppSupport/*.lock
+macos/iterm2/AppSupport/log.*

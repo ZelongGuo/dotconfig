@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+# Zelong Guo
+# @ GFZ, Potsdam, 31.03.2023
+
+# this script is used for copy files from my remote linux computer (mefe9) to my Mac, of course, you can modify this script to copy any other files to Mac as long as you can get access to the remote server, you should do it in intranet/same LAN (local area network) or use VPN. 
+
+remote_server='zelong@mefe9:/misc/zs7/Zelong/shared/*'
+scp ${remote_server} ~/shared
+# if the command return 1 (faild), is should be a folder and try again: 
+if [ "$?" == "1" ]; then
+	scp -r ${remote_server} ~/shared
+fi
+
+# you can set password-free login like ssh-key.md, here I just ignore it.
+
+# ----------------------------------------------------------
+# If you wanna get access to this Mac from other computer, you need turn on the general -> sharing -> remote login
+# and then connecting to this Mac accordingly.
