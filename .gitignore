@@ -13,9 +13,8 @@
 .vscode/
 .idea/
 
-# Submodules - remove nested .git directories
-shared/nvim/.git
-shared/ranger/plugins/ranger_devicons/.git
+# Separately managed repositories
+shared/nvim/
 
 # Cache
 **/__pycache__/
