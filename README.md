@@ -10,6 +10,8 @@ Cross-platform configuration files for macOS and Linux.
 │   ├── kitty/       # Terminal emulator
 │   ├── lazygit/     # Git UI
 │   ├── ranger/      # File manager
+│   ├── surfingkeys/ # Browser extension
+│   ├── skills/      # Claude/AI skills
 │   ├── tmux/        # Terminal multiplexer
 │   ├── yazi/        # File manager
 │   └── zsh/         # Shell configuration
