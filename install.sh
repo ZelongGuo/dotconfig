@@ -146,10 +146,10 @@ if [[ -f "$DOTCONFIG_DIR/shared/zsh/zshrc" ]]; then
     echo -e "  ${GREEN}✓${NC} .zshrc → ~/dotconfig/shared/zsh/zshrc"
 fi
 
-# Link .gitconfig
-if [[ -f "$DOTCONFIG_DIR/shared/git/config" ]]; then
-    ln -sf "$DOTCONFIG_DIR/shared/git/config" "$HOME/.gitconfig"
-    echo -e "  ${GREEN}✓${NC} .gitconfig → ~/dotconfig/shared/git/config"
+# Link .zimrc
+if [[ -f "$DOTCONFIG_DIR/shared/zsh/zimrc" ]]; then
+    ln -sf "$DOTCONFIG_DIR/shared/zsh/zimrc" "$HOME/.zimrc"
+    echo -e "  ${GREEN}✓${NC} .zimrc → ~/dotconfig/shared/zsh/zimrc"
 fi
 
 # -------------------------------------------------------------------

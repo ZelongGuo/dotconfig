@@ -20,10 +20,3 @@ shared/nvim/
 **/__pycache__/
 *.pyc
 *.pyo
-
-# iTerm2 cache
-macos/iterm2/AppSupport/SavedState/
-macos/iterm2/AppSupport/parsers/
-macos/iterm2/AppSupport/*.socket
-macos/iterm2/AppSupport/*.lock
-macos/iterm2/AppSupport/log.*
