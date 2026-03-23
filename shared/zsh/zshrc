@@ -27,12 +27,15 @@ fi
 # -------------------------------------------------------------------
 # Load OS-specific configuration
 # -------------------------------------------------------------------
+# Get dotconfig root directory (ZSH_DIR is shared/zsh, so parent is shared, grandparent is root)
+DOTCONFIG_ROOT="${ZSH_DIR:h:h}"
+
 if [[ "$OSTYPE" == darwin* ]]; then
     # macOS
-    source "$ZSH_DIR/os/macos.zsh"
+    source "$DOTCONFIG_ROOT/macos/zsh/macos.zsh"
 elif [[ "$OSTYPE" == linux-gnu* ]]; then
     # Linux
-    source "$ZSH_DIR/os/linux.zsh"
+    source "$DOTCONFIG_ROOT/linux/zsh/linux.zsh"
 fi
 
 # -------------------------------------------------------------------
