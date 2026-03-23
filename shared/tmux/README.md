@@ -1,23 +1,52 @@
-## My tmux config
+# Tmux Configuration
 
-you should place the file in `~`, or `ln -s ~/.config/tmux/.tmux.conf ~/.tmux.conf`
+Cross-platform tmux configuration with powerline status bar and plugins.
 
-let `prefix` be `c-a`
+## Structure
 
+```
+tmux/
+├── .tmux.conf          # Main configuration
+├── fzf_panes.tmux      # FZF-based pane switching
+├── tmux-powerline/     # Status bar theme (third-party)
+└── extrakto/           # Text extraction plugin (third-party)
+```
 
-**change statue bar:**
+## Installation
 
-If you want to change the botton bar state, you can check the `./tmux-powerline/themes/default.sh` and modify it.
+The config is symlinked by the main `install.sh` script:
+```bash
+~/.tmux.conf → ~/dotconfig/shared/tmux/.tmux.conf
+```
 
-![statue](https://img-blog.csdnimg.cn/20200923150050560.png)
+## Features
 
+- **Prefix**: `Ctrl-a` (remapped from `Ctrl-b`)
+- **Vim-style keybindings** in copy mode
+- **Powerline status bar** with left/right sections
+- **Auto tmux** - Automatically starts tmux session on shell launch
+- **FZF panes** - Enhanced pane switching with fzf
+
+## Keybindings
+
+| Key | Action |
+|-----|--------|
+| `Ctrl-a` | Prefix |
+| `Ctrl-a r` | Reload config |
+| `-` / `\` | Split horizontal/vertical |
+| `i/k/j/l` | Move up/down/left/right (Vim-style) |
+| `f` | Toggle full pane |
+| `q` | Kill pane |
+| `p` | Paste buffer |
+
+## Customization
+
+### Change Status Bar
+
+Edit `tmux-powerline/themes/default.sh`
 
 ### Troubleshooting
 
-1. The icons of tmux-powerline couldn't be shown (or couldn't be shown properly).
-   - Firstly, you should check the **font setting** in **Iterm2**. You should choose **nerd font** or **powerline font**. Usually **nerd font** is O.K., because nerd font is the superset (>=) of powerline font.
-   - If **font setting** is OK, check is the **non-ascii** symbols could be shown properly in **ranger** or not, if everything is OK, then go the third step.
-   - Open tumx with `tmux -u`, that means writing **UTF-8** output to the terminal no matter the environment variable of `LC_ALL`, `LC_CTYPE`, or `LANG` that is set. Then you are supposed to see everything has been getting to the right track. However, it is not forever, you should check the **UTF-8** setting in **Iterm2** and make sure the **font**, ***region/country*** (under Profile -> Terminal -> Environment) with **utf-8**. 
-
-
-
+**Icons not showing:**
+- Use Nerd Font or Powerline font in your terminal
+- Run `tmux -u` for UTF-8 mode
