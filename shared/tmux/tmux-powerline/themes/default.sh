@@ -40,9 +40,8 @@ if [ -z $TMUX_POWERLINE_LEFT_STATUS_SEGMENTS ]; then
 		# for light mode
 		"tmux_session_info 245 0" \
 		"hostname 247 0" \
-		"ifstat     249 0" \
 		"ifstat_sys 249 0" \
-		#"lan_ip 24 255 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}" \
+		"lan_ip 24 255 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}" \
 		#"wan_ip 24 255" \
 		#"vcs_branch 29 88" \
 		#"vcs_compare 60 255" \
@@ -65,13 +64,13 @@ if [ -z $TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS ]; then
 		#"now_playing 234 37" \
 		#"battery 137 127" \
 		#"tmux_mem_cpu_load 234 136" \
-    		#"cpu 240 136" \
+    		"cpu 240 136" \
 		#"weather 37 255" \
 		#"rainbarf 0 ${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR}" \
-    		#"xkb_layout 125 117" \ 
-		# "date_day 235 136" \
-		# "date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
-		# "time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
+    		#"xkb_layout 125 117" \
+		"date_day 235 136" \
+		"date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
+		"time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
 		#"utc_time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
 	)
 fi
