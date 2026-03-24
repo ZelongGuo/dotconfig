@@ -159,6 +159,14 @@ if [[ -f "$DOTCONFIG_DIR/shared/tmux/.tmux.conf" ]]; then
     echo -e "  ${GREEN}✓${NC} .tmux.conf → ~/dotconfig/shared/tmux/.tmux.conf"
 fi
 
+# Link .claude/skills (if .claude directory exists)
+if [[ -d "$HOME/.claude" ]]; then
+    if [[ -d "$DOTCONFIG_DIR/shared/skills" ]]; then
+        ln -sf "$DOTCONFIG_DIR/shared/skills" "$HOME/.claude/skills"
+        echo -e "  ${GREEN}✓${NC} .claude/skills → ~/dotconfig/shared/skills"
+    fi
+fi
+
 # -------------------------------------------------------------------
 # Summary
 # -------------------------------------------------------------------
