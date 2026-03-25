@@ -100,11 +100,14 @@ rm -f "$HOME/.config/skills" "$DOTCONFIG_DIR/shared/skills/skills"
 SHARED_DIR="$DOTCONFIG_DIR/shared"
 if [[ -d "$SHARED_DIR" ]]; then
     for app in "$SHARED_DIR"/*; do
-        if [[ -d "$app" ]]; then
-            app_name=$(basename "$app")
+        # Skip symlinks and non-directories
+        [[ -L "$app" ]] && continue
+        [[ ! -d "$app" ]] && continue
 
-            # Skip skills - handled separately
-            [[ "$app_name" == "skills" ]] && continue
+        app_name=$(basename "$app")
+
+        # Skip skills - handled separately
+        [[ "$app_name" == "skills" ]] && continue
 
             target="$HOME/.config/$app_name"
 
