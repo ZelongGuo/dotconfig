@@ -14,7 +14,6 @@ Cross-platform CLI toolchain and configuration files for macOS and Linux.
 ```
 ~/dotconfig/
 ├── shared/          # Cross-platform configs → ~/.config/
-│   ├── kitty/       # Terminal emulator
 │   ├── lazygit/     # Git UI
 │   ├── ranger/      # File manager
 │   ├── surfingkeys/ # Browser extension
@@ -24,8 +23,10 @@ Cross-platform CLI toolchain and configuration files for macOS and Linux.
 │   └── zsh/         # Shell configuration
 ├── macos/           # macOS-specific configs → ~/.config/
 │   ├── aerospace/   # Tiling window manager
+│   ├── kitty/       # Terminal emulator
 │   └── zsh/         # macOS-specific zsh config
 ├── linux/           # Linux-specific configs → ~/.config/
+│   ├── kitty/       # Terminal emulator
 │   ├── wm/          # Window manager configs
 │   └── zsh/         # Linux-specific zsh config
 ├── install.sh       # Installation script

@@ -93,6 +93,12 @@ if [[ -d "$SHARED_DIR" ]]; then
     for app in "$SHARED_DIR"/*; do
         if [[ -d "$app" ]]; then
             app_name=$(basename "$app")
+
+            # Skip skills - handled separately below
+            if [[ "$app_name" == "skills" ]]; then
+                continue
+            fi
+
             target="$HOME/.config/$app_name"
 
             # Remove existing symlink or backup regular file
