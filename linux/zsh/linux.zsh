@@ -3,9 +3,24 @@
 # This file is loaded only on Linux systems
 # -------------------------------------------------------------------
 
-# -------------------------------------------------------------------
-# --- Package Manager (apt/yay/pacman etc.) ---
-# Add your Linux package manager specific configurations here
+# --- HOMEBREW Tsinghua Mirrors for Domestic ---
+export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+export HOMEBREW_CASK_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git"
+export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+
+# # --- Homebrew Officials, uncomment blow if needed  ---
+# export HOMEBREW_BREW_GIT_REMOTE="https://github.com/Homebrew/brew.git"
+# export HOMEBREW_CORE_GIT_REMOTE="https://github.com/Homebrew/homebrew-core.git"
+# export HOMEBREW_CASK_GIT_REMOTE="https://github.com/Homebrew/homebrew-cask.git"
+# unset HOMEBREW_BOTTLE_DOMAIN
+
+# When you come across some failed installation about the "Bottle", you can try to
+# comment the following lines or change it to other mirrors...
+#export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/bottles
+
+# Include the all apps installed by homebrew pathes to env virables PATH
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 
 # -------------------------------------------------------------------
 # --- CONDA ---
