@@ -40,12 +40,30 @@ check_prerequisites() {
         missing=1
     fi
 
+    if ! command -v brew &>/dev/null; then
+        echo -e "${RED}Error: Homebrew is not installed${NC}"
+        echo "  /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+        missing=1
+    fi
+
     if [[ $missing -eq 1 ]]; then
         exit 1
     fi
 }
 
+# -------------------------------------------------------------------
+# Install software from Brewfile
+# -------------------------------------------------------------------
+install_brewfile() {
+    local brewfile="$DOTCONFIG_DIR/Brewfile"
+    if [[ -f "$brewfile" ]]; then
+        echo -e "${YELLOW}Installing software from Brewfile (--no-upgrade mode)...${NC}"
+        brew bundle --file="$brewfile" --no-upgrade
+    fi
+}
+
 check_prerequisites
+install_brewfile
 
 # -------------------------------------------------------------------
 # Detect OS
@@ -125,12 +143,6 @@ if [[ -d "$OS_DIR" ]]; then
             echo -e "  ${GREEN}✓${NC} $item_name → ~/.config/$item_name"
         fi
     done
-
-    # Handle Brewfile (macOS only)
-    if [[ -f "$OS_DIR/brew/Brewfile.txt" ]]; then
-        cp "$OS_DIR/brew/Brewfile.txt" "$DOTCONFIG_DIR/Brewfile"
-        echo -e "  ${GREEN}✓${NC} Brewfile → ~/dotconfig/Brewfile"
-    fi
 else
     echo -e "  ${YELLOW}Warning: $CURRENT_OS/ directory not found${NC}"
 fi
