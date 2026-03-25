@@ -88,6 +88,11 @@ echo ""
 # -------------------------------------------------------------------
 echo -e "${YELLOW}Step 1: Creating symlinks for shared configs...${NC}"
 
+# Clean up any existing ~/.config/skills symlink to prevent recursion
+if [[ -L "$HOME/.config/skills" ]]; then
+    rm "$HOME/.config/skills"
+fi
+
 SHARED_DIR="$DOTCONFIG_DIR/shared"
 if [[ -d "$SHARED_DIR" ]]; then
     for app in "$SHARED_DIR"/*; do
