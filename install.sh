@@ -88,10 +88,14 @@ echo ""
 # -------------------------------------------------------------------
 echo -e "${YELLOW}Step 1: Creating symlinks for shared configs...${NC}"
 
-# Clean up any existing ~/.config/skills symlink to prevent recursion
-if [[ -L "$HOME/.config/skills" ]]; then
-    rm "$HOME/.config/skills"
+# Prevent recursion: ~/.config should not be dotconfig/shared
+if [[ "$(readlink -f "$HOME/.config")" == "$DOTCONFIG_DIR/shared" ]]; then
+        echo -e "${RED}Error: ~/.config links to dotconfig/shared, causes recursion${NC}"
+        exit 1
 fi
+
+# Clean up any recursive symlinks
+rm -f "$HOME/.config/skills" "$DOTCONFIG_DIR/shared/skills/skills"
 
 SHARED_DIR="$DOTCONFIG_DIR/shared"
 if [[ -d "$SHARED_DIR" ]]; then
@@ -99,10 +103,8 @@ if [[ -d "$SHARED_DIR" ]]; then
         if [[ -d "$app" ]]; then
             app_name=$(basename "$app")
 
-            # Skip skills - handled separately below
-            if [[ "$app_name" == "skills" ]]; then
-                continue
-            fi
+            # Skip skills - handled separately
+            [[ "$app_name" == "skills" ]] && continue
 
             target="$HOME/.config/$app_name"
 
