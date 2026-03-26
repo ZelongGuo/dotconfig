@@ -88,6 +88,7 @@ echo ""
 # -------------------------------------------------------------------
 echo -e "${YELLOW}Step 1: Creating symlinks for shared configs...${NC}"
 
+# TODO: not all apps in shared/ should be linked to .config, update the needed apps names to the loop?
 SHARED_DIR="$DOTCONFIG_DIR/shared"
 if [[ -d "$SHARED_DIR" ]]; then
     for app in "$SHARED_DIR"/*; do
@@ -174,7 +175,16 @@ fi
 # Link .claude/skills (if .claude directory exists)
 if [[ -d "$HOME/.claude" ]]; then
     if [[ -d "$DOTCONFIG_DIR/shared/skills" ]]; then
-        ln -sf "$DOTCONFIG_DIR/shared/skills" "$HOME/.claude/skills"
+        target="$HOME/.claude/skills"
+        source="$DOTCONFIG_DIR/shared/skills"
+
+        if [[ -L "$target" ]]; then
+            rm "$target"
+        elif [[ -e "$target" ]]; then
+            mv "$target" "$target.backup.$(date +%s)"
+        fi
+
+        ln -s "$source" "$target"
         echo -e "  ${GREEN}✓${NC} .claude/skills → ~/dotconfig/shared/skills"
     fi
 fi
