@@ -20,3 +20,8 @@ shared/nvim/
 **/__pycache__/
 *.pyc
 *.pyo
+
+findings.md
+progress.md
+task_plan.md
+
