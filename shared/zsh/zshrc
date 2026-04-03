@@ -20,8 +20,14 @@ fi
 # -------------------------------------------------------------------
 # Zim Framework - Initialize first
 # -------------------------------------------------------------------
+# if you get warning: completion was already initialized before completion module. Will call compinit again. See https://github.com/zimfw/zimfw/wiki/Troubleshooting#completion-is-not-working
+# then place "skip_global_compinit=1" to ~/.zshenv
 if [[ -s ~/.zim/init.zsh ]]; then
     source ~/.zim/init.zsh
+else
+    echo "\n\033[1;33m[Warning]\033[0m: $0: Zim not found (No ~/.zim/ folder). Install it with:"
+    echo "  curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh"
+    echo ""
 fi
 
 # -------------------------------------------------------------------
@@ -41,7 +47,6 @@ fi
 # -------------------------------------------------------------------
 # Load common/shared configuration modules
 # -------------------------------------------------------------------
-# Note: zim is initialized above (not in this loop)
 for file in env aliases vim_keybindings tmux fzf_completion; do
     source "$ZSH_DIR/${file}.zsh"
 done
