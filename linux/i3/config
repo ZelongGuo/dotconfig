@@ -173,7 +173,15 @@ set $ws9 "9"
 set $ws10 "10"
 set $wsT "11:T"
 set $wsB "12:B"
-set $wsB "13:C"
+# set $wsC "13:C"
+
+# Assign windows for different apps, and auto jump
+assign [class="kitty"] → workspace $wsT
+for_window [class="kitty"] focus
+assign [class="Google-chrome"] → workspace $wsB
+for_window [class="Google-chrome"] focus
+# assign [class="thunderbird_thunderbird"] → workspace $wsM
+# assign [class="Google-chrome"] → workspace $wsC
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -204,11 +212,6 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+t move container to workspace $wsT
 bindsym $mod+Shift+b move container to workspace $wsB
 # bindsym $mod+Shift+c move container to workspace $wsC
-
-assign [class="kitty"] → workspace $wsT
-assign [class="Google-chrome"] → workspace $wsB
-# assign [class="thunderbird_thunderbird"] → workspace $wsM
-# assign [class="Google-chrome"] → workspace $wsC
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
