@@ -25,25 +25,25 @@ font pango:JetBrainsMono Nerd Font 12
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+# for dual monitors
+exec_always --no-startup-id ~/.config/i3/scripts/monitor_hotplug.sh
+# for wallpapers
+exec_always --no-startup-id sleep 1 && feh --bg-fill ~/Pictures/wallpapers/artist.png
 # for Input method
 exec_always --no-startup-id fcitx5
 # for notification
 exec_always --no-startup-id dunst
-# for wallpapers
-# exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpapers/1.png
-exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpapers/artist.png
+# for picom 
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
+# for polyvar statusline, if only monitor, uncomment below line
+# exec_always --no-startup-id sleep 1 &&  ~/.config/polybar/launch.sh
+exec_always --no-startup-id sleep 1 &&  ~/.config/polybar/launch_dual_polybar.sh
 # for lock screen
 bindsym $mod+Shift+x exec --no-startup-id ~/.config/i3/scripts/lock.sh
 exec_always --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/scripts/lock.sh
-# for polyvar statusline, already included in monitor_hotplug.sh
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-# for picom 
-exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
 # for Mount and unmout Mac
 bindsym $mod+m exec --no-startup-id ~/.config/i3/scripts/mount_mac.sh
 bindsym $mod+Shift+m exec --no-startup-id ~/.config/i3/scripts/umount_mac.sh
-# # for dual monitors and plolybar
-# exec_always --no-startup-id ~/.config/i3/scripts/monitor_hotplug.sh
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -177,9 +177,9 @@ set $wsB "12:B"
 
 # Assign windows for different apps, and auto jump
 assign [class="kitty"] → workspace $wsT
-for_window [class="kitty"] focus
+# for_window [class="kitty"] focus
 assign [class="Google-chrome"] → workspace $wsB
-for_window [class="Google-chrome"] focus
+# for_window [class="Google-chrome"] focus
 # assign [class="thunderbird_thunderbird"] → workspace $wsM
 # assign [class="Google-chrome"] → workspace $wsC
 
@@ -212,6 +212,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+t move container to workspace $wsT
 bindsym $mod+Shift+b move container to workspace $wsB
 # bindsym $mod+Shift+c move container to workspace $wsC
+
+for_window [class=".*"] focus
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
