@@ -20,4 +20,5 @@ sshfs "$REMOTE" "$MOUNT_POINT" \
     -o idmap=user \
     -o cache=yes
 
-echo "Done"
+notify-send -i network-server -t 2000 "SSHFS" "Mounted to Mac"
+# echo "Done"
