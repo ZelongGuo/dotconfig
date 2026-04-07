@@ -1,30 +1,40 @@
 #!/usr/bin/bash
 set -e
 
-PRIMARY="HDMI-0"
-SECONDARY="HDMI-1-2"
+PRIMARY=$(xrandr | grep " connected" | awk 'NR==1{print $1}')
+SECONDARY=$(xrandr | grep " connected" | awk 'NR==2{print $1}')
 
-WS1="1"
-WS2="2"
-WS3="3"
-WS4="4"
-WS5="5"
-WS6="6"
-WST="11:T"
+# Exit if no monitor is detected (should not normally happen)
+[ -z "$PRIMARY" ] && exit 1
 
-if xrandr --query | grep "^$SECONDARY connected" >/dev/null 2>&1; then
-    i3-msg "workspace $WS1; move workspace to output $PRIMARY"
-    i3-msg "workspace $WS2; move workspace to output $PRIMARY"
-    i3-msg "workspace $WS3; move workspace to output $PRIMARY"
-    i3-msg "workspace $WS4; move workspace to output $SECONDARY"
-    i3-msg "workspace $WS5; move workspace to output $SECONDARY"
-    i3-msg "workspace $WS6; move workspace to output $SECONDARY"
-    i3-msg "workspace \"$WST\"; move workspace to output $SECONDARY"
-    i3-msg "workspace $WS1"
+if [ -n "$SECONDARY" ]; then
+    i3-msg "
+    workspace 1; move workspace to output $PRIMARY;
+    workspace 2; move workspace to output $PRIMARY;
+    workspace 3; move workspace to output $PRIMARY;
+    workspace 4; move workspace to output $PRIMARY;
+    workspace 5; move workspace to output $PRIMARY;
+    workspace 6; move workspace to output $SECONDARY;
+    workspace 7; move workspace to output $SECONDARY;
+    workspace 8; move workspace to output $SECONDARY;
+    workspace 9; move workspace to output $SECONDARY;
+    workspace 0; move workspace to output $SECONDARY;
+    workspace \"11:T\"; move workspace to output $SECONDARY;
+    workspace 1
+    "
 else
-    for ws in "$WS1" "$WS2" "$WS3" "$WS4" "$WS5" "$WS6"; do
-        i3-msg "workspace $ws; move workspace to output $PRIMARY"
-    done
-    i3-msg "workspace \"$WST\"; move workspace to output $PRIMARY"
-    i3-msg "workspace $WS1"
+    i3-msg "
+    workspace 1; move workspace to output $PRIMARY;
+    workspace 2; move workspace to output $PRIMARY;
+    workspace 3; move workspace to output $PRIMARY;
+    workspace 4; move workspace to output $PRIMARY;
+    workspace 5; move workspace to output $PRIMARY;
+    workspace 6; move workspace to output $PRIMARY;
+    workspace 7; move workspace to output $PRIMARY;
+    workspace 8; move workspace to output $PRIMARY;
+    workspace 9; move workspace to output $PRIMARY;
+    workspace 0; move workspace to output $PRIMARY;
+    workspace \"11:T\"; move workspace to output $PRIMARY;
+    workspace 1
+    "
 fi

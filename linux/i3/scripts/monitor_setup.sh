@@ -1,23 +1,22 @@
 #!/usr/bin/bash
 set -e
 
-# Get the monitors' name by xrandr command
-PRIMARY="HDMI-0"
-SECONDARY="HDMI-1-2"
+# Read the first two connected outputs from xrandr
+PRIMARY=$(xrandr | grep " connected" | awk 'NR==1{print $1}')
+SECONDARY=$(xrandr | grep " connected" | awk 'NR==2{print $1}')
 
-is_connected() {
-    xrandr --query | grep "^$1 connected" >/dev/null 2>&1
-}
+# Exit if no monitor is detected (should not normally happen)
+[ -z "$PRIMARY" ] && exit 1
 
-# Use the default 4K resolution, but the fonts would be rather small than 2K
+# Configure dual monitor setup
 setup_dual() {
     xrandr \
         --output "$PRIMARY" --primary --mode 2560x1440 --pos 0x0 \
-        --output "$SECONDARY" --mode 3840x2160 --right-of "$PRIMARY"
+        --output "$SECONDARY" --auto --right-of "$PRIMARY"
 }
 
-# # Change scales for 2K and 4K monitors for showing similar size text, if we do so, the resolution of
-# # the 4K would even worse than 2K
+# Change scales for 2K and 4K monitors for showing similar size text, if we do so, the resolution of
+# the 4K would even worse than 2K, use xrandr checking the resolution
 # setup_dual() {
 #     xrandr \
 #         --output "$PRIMARY" --primary --mode 2560x1440 --pos 0x0 \
@@ -26,13 +25,13 @@ setup_dual() {
 
 setup_single() {
     xrandr \
-        --output "$SECONDARY" --off \
-        --output "$PRIMARY" --primary --mode 2560x1440 --pos 0x0
+        --output "$PRIMARY" --primary --auto --pos 0x0
 }
 
-if is_connected "$SECONDARY"; then
+# If a second monitor exists → dual screen
+# Otherwise → single screen
+if [ -n "$SECONDARY" ]; then
     setup_dual
 else
     setup_single
 fi
-
