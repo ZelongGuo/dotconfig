@@ -25,7 +25,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 # -------------------------------------------------------------------
 # --- CONDA ---
 # Uncomment and adjust the path for your Linux system
-# export conda="$HOME/miniconda3/etc/profile.d/conda.sh"
+export conda="/data/opt/miniconda/etc/profile.d/conda.sh"
 
 # -------------------------------------------------------------------
 # --- GMT (if used on Linux) ---
