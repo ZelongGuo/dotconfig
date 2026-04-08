@@ -1,9 +1,10 @@
-<img src="https://img.shields.io/badge/macOS-supported-blue?logo=apple" alt="macOS"/>
-<img src="https://img.shields.io/badge/Linux-supported-green?logo=linux" alt="Linux"/>
-<img src="https://img.shields.io/badge/Homebrew-integrated-orange?logo=homebrew" alt="Homebrew"/>
-<img src="https://img.shields.io/badge/License-MIT-yellow" alt="License"/>
-
 # Dotconfig
+
+<!-- <img src="https://img.shields.io/badge/macOS-supported-blue?logo=apple" alt="macOS"/> -->
+<!-- <img src="https://img.shields.io/badge/Linux-supported-green?logo=linux" alt="Linux"/> -->
+<!-- <img src="https://img.shields.io/badge/Homebrew-integrated-orange?logo=homebrew" alt="Homebrew"/> -->
+<!-- <img src="https://img.shields.io/badge/License-MIT-yellow" alt="License"/> -->
+![macOS](https://img.shields.io/badge/macOS-supported-blue?logo=apple) ![Linux](https://img.shields.io/badge/Linux-supported-green?logo=linux) ![Homebrew](https://img.shields.io/badge/Homebrew-integrated-orange?logo=homebrew) ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 Cross-platform CLI toolchain and configuration files for macOS and Linux.
 
