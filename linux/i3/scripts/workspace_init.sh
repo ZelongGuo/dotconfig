@@ -20,6 +20,7 @@ if [ -n "$SECONDARY" ]; then
     workspace 9; move workspace to output $SECONDARY;
     workspace 0; move workspace to output $SECONDARY;
     workspace \"11:T\"; move workspace to output $SECONDARY;
+    workspace \"12:B\"; move workspace to output $PRIMARY;
     workspace 1
     "
 else
@@ -35,6 +36,7 @@ else
     workspace 9; move workspace to output $PRIMARY;
     workspace 0; move workspace to output $PRIMARY;
     workspace \"11:T\"; move workspace to output $PRIMARY;
+    workspace \"12:B\"; move workspace to output $PRIMARY;
     workspace 1
     "
 fi
