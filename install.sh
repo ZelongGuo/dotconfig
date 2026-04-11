@@ -57,7 +57,10 @@ check_prerequisites() {
 install_brewfile() {
     local brewfile="$DOTCONFIG_DIR/Brewfile"
     if [[ -f "$brewfile" ]]; then
-        echo -e "${YELLOW}Installing software from Brewfile (--no-upgrade mode)...${NC}"
+        echo -e "${YELLOW}Installing software from Brewfile (stable mode)...${NC}"
+
+        HOMEBREW_NO_AUTO_UPDATE=1 \
+        HOMEBREW_NO_INSTALL_CLEANUP=1 \
         brew bundle --file="$brewfile" --no-upgrade
     fi
 }
