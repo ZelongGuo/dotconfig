@@ -1,0 +1,153 @@
+# ==============================================================================
+# Zathura Configuration File (zathurarc)
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# UI and Appearance
+# ------------------------------------------------------------------------------
+# Display the file basename in the window title
+set window-title-basename true
+
+# Show the home directory as a tilde (~) in the status bar
+set statusbar-home-tilde true
+
+# Hide or show UI elements (s: statusbar, v: vertical scrollbar, h: horizontal scrollbar)
+# 's' displays only the status bar for a clean look
+set guioptions s
+
+# ------------------------------------------------------------------------------
+# Scrolling and Navigation
+# ------------------------------------------------------------------------------
+# Enable smooth scrolling
+set scroll-step 50
+
+# Use page-wise scrolling (full page or half page)
+set scroll-full-overlap 0.01
+set scroll-page-aware true
+
+# Number of pages to show side-by-side
+set pages-per-row 1
+
+# Open the PDF at a specific zoom level (options: "width", "best-fit")
+set adjust-open "width"
+
+# ------------------------------------------------------------------------------
+# Search and Selection
+# ------------------------------------------------------------------------------
+# Enable incremental search (search as you type)
+set incremental-search true
+
+# Highlight search results
+set highlight-color "rgba(250, 189, 47, 0.5)"
+set highlight-active-color "rgba(254, 128, 25, 0.8)"
+
+# Copy selected text to system clipboard (works with xclip/wl-copy/pbcopy)
+set selection-clipboard clipboard
+
+# ------------------------------------------------------------------------------
+# Color Scheme (Dark Mode / Recolor) and font
+# ------------------------------------------------------------------------------
+# Set the default background and foreground colors
+set default-bg                  "#D3D3D3"
+set default-fg                  "#D4D4D4"
+
+# Set colors for the status bar
+set statusbar-bg                "#FFFFFF"
+set statusbar-fg                "#2D2D2D"
+
+# Set colors for the input bar (the ':' command line)
+set inputbar-bg                 "#1E1E1E"
+set inputbar-fg                 "#FFFFFF"
+
+# Set colors for notifications
+set notification-error-bg       "#F44747"
+set notification-error-fg       "#FFFFFF"
+set notification-warning-bg     "#CCA700"
+set notification-warning-fg     "#FFFFFF"
+
+# Recolor settings (activated via 'recolor' command or 'i' key)
+# This effectively creates a "Night Mode" for all documents
+set recolor                     "false" # Disabled by default
+set recolor-lightcolor          "#1E1E1E" # Background in night mode
+set recolor-darkcolor           "#D4D4D4" # Text in night mode
+
+# Keep original image colors even in recolor mode
+set recolor-keephue             "true"
+
+# Use the system default monospace font and only specify the size
+set font "monospace 16"
+
+# ------------------------------------------------------------------------------
+# Other original bindings
+# ------------------------------------------------------------------------------
+# Map 'r' to rotate the document
+map r rotate
+
+# Map 'D' to toggle double page view
+map D toggle_page_mode
+
+# Scroll using mouse wheel + Control
+map <C-ScrollUp> zoom in
+map <C-ScrollDown> zoom out
+
+# ------------------------------------------------------------------------------
+# Key Bindings (Custom Navigation)
+# ------------------------------------------------------------------------------
+
+# 1. Basic Movement (i = up, k = down)
+# Note: We unmap 'i' first because it's usually bound to 'recolor'
+unmap i
+map i scroll up
+map k scroll down
+
+# 2. Fast Movement (I, K for 5x faster scrolling)
+# We achieve this by mapping the uppercase letters to a larger scroll step
+map I feedkeys 8i
+map K feedkeys 8k
+
+# 3. Document Navigation (gg = top, G = bottom)
+map gg goto top
+map G  goto bottom
+
+# 4. Zooming with Super (Command/Meta key)
+# 'm' stands for Meta/Super/Command key in zathura
+# Double bind for compatibility with different keyboards
+unmap <m-=>
+unmap <m-+>
+unmap <m-->
+
+map <m-=> zoom in
+map <m-+> zoom in
+map <m--> zoom out
+
+# Also add Ctrl bindings just in case Super is intercepted by OS
+map <C-=> zoom in
+map <C-+> zoom in
+map <C--> zoom out
+
+# Scroll using mouse wheel + Control
+map <C-ScrollUp> zoom in
+map <C-ScrollDown> zoom out
+
+# 5. Re-mapping the original 'i' (recolor) to another key
+# Since 'i' is now used for navigation, let's move 'recolor' to 'n' (Night mode)
+map n recolor
+
+# Map 'r' to rotate the document
+map r rotate
+
+# Map 'D' to toggle double page view
+map D toggle_page_mode
+
+# ------------------------------------------------------------------------------
+# Advanced Settings
+# ------------------------------------------------------------------------------
+# Render the document using the high-quality Poppler or MuPDF backend
+# Note: Ensure you have 'zathura-pdf-poppler' or 'zathura-pdf-mupdf' installed
+set render-loading true
+
+# Reload the document automatically when it changes (useful for LaTeX workflows)
+set dbus-service true
+
+# Set the maximum number of items in the command history
+set history-max-size 100
