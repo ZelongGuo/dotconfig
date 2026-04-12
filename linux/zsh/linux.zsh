@@ -28,6 +28,10 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 export conda="/data/opt/miniconda/etc/profile.d/conda.sh"
 
 # -------------------------------------------------------------------
+# --- TEXLIVE ---
+export PATH=/usr/local/texlive/2026/bin/x86_64-linux:$PATH
+
+# -------------------------------------------------------------------
 # --- GMT (if used on Linux) ---
 # Uncomment and adjust the path for your Linux system
 # export GMTHOME=$HOME/this_gmt
