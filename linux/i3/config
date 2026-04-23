@@ -84,6 +84,9 @@ bindsym Mod4+space exec --no-startup-id rofi -show drun
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
+# flameshot for screenshot, same shortcut with wechat
+bindsym Mod4+Control+a exec --no-startup-id flameshot gui
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
