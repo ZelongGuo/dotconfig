@@ -78,32 +78,27 @@ set recolor-keephue             "true"
 set font "monospace 16"
 
 # ------------------------------------------------------------------------------
-# Other original bindings
-# ------------------------------------------------------------------------------
-# Map 'r' to rotate the document
-map r rotate
-
-# Map 'D' to toggle double page view
-map D toggle_page_mode
-
-# Scroll using mouse wheel + Control
-map <C-ScrollUp> zoom in
-map <C-ScrollDown> zoom out
-
-# ------------------------------------------------------------------------------
 # Key Bindings (Custom Navigation)
 # ------------------------------------------------------------------------------
 
-# 1. Basic Movement (i = up, k = down)
+# 1. Basic Movement (i = up, k = down, j = left, l = right)
 # Note: We unmap 'i' first because it's usually bound to 'recolor'
 unmap i
+unmap j
 map i scroll up
 map k scroll down
+map j scroll left
+# 'l' is not accepted as a single key binding in zathura 0.5.4
+# Using uppercase L instead (hold Shift + L for right scroll)
+unmap <l>
+map <l> scroll right
 
-# 2. Fast Movement (I, K for 5x faster scrolling)
+# 2. Fast Movement (I, K, J, L for 5x faster scrolling)
 # We achieve this by mapping the uppercase letters to a larger scroll step
 map I feedkeys 8i
 map K feedkeys 8k
+map J feedkeys 8j
+map L feedkeys 8<l>
 
 # 3. Document Navigation (gg = top, G = bottom)
 map gg goto top
@@ -129,7 +124,18 @@ map <C--> zoom out
 map <C-ScrollUp> zoom in
 map <C-ScrollDown> zoom out
 
-# 5. Re-mapping the original 'i' (recolor) to another key
+# 5. Index mode navigation (Tab key — Table of Contents)
+# Map i/k/j/l for up/down/left/right in index mode
+# Unmap the default index bindings first (j=down, k=up, l=expand) before remapping
+unmap index j
+unmap index k
+unmap index l
+map index i navigate_index up
+map index k navigate_index down
+map index j navigate_index collapse
+map index l navigate_index expand
+
+# 6. Re-mapping the original 'i' (recolor) to another key
 # Since 'i' is now used for navigation, let's move 'recolor' to 'n' (Night mode)
 map n recolor
 
@@ -149,5 +155,3 @@ set render-loading true
 # Reload the document automatically when it changes (useful for LaTeX workflows)
 set dbus-service true
 
-# Set the maximum number of items in the command history
-set history-max-size 100
