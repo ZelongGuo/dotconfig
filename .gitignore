@@ -12,6 +12,7 @@
 # IDE
 .vscode/
 .idea/
+.claude/
 
 # Separately managed repositories
 shared/nvim/
