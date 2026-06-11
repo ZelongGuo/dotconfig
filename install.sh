@@ -175,22 +175,6 @@ if [[ -f "$DOTCONFIG_DIR/shared/tmux/.tmux.conf" ]]; then
     echo -e "  ${GREEN}✓${NC} .tmux.conf → ~/dotconfig/shared/tmux/.tmux.conf"
 fi
 
-# Link .claude/skills (if .claude directory exists)
-if [[ -d "$HOME/.claude" ]]; then
-    if [[ -d "$DOTCONFIG_DIR/shared/skills" ]]; then
-        target="$HOME/.claude/skills"
-        source="$DOTCONFIG_DIR/shared/skills"
-
-        if [[ -L "$target" ]]; then
-            rm "$target"
-        elif [[ -e "$target" ]]; then
-            mv "$target" "$target.backup.$(date +%s)"
-        fi
-
-        ln -s "$source" "$target"
-        echo -e "  ${GREEN}✓${NC} .claude/skills → ~/dotconfig/shared/skills"
-    fi
-fi
 
 # -------------------------------------------------------------------
 # Summary

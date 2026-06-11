@@ -12,7 +12,6 @@ Cross-platform CLI toolchain and configuration files for macOS and Linux.
 │   ├── lazygit/     # Git UI configuration
 │   ├── ranger/      # File manager (colorschemes, plugins, rifle)
 │   ├── surfingkeys/ # Browser extension configuration
-│   ├── skills/      # Claude/AI skills
 │   ├── tmux/        # Terminal multiplexer + powerline
 │   ├── yazi/        # Modern file manager (themes, plugins)
 │   └── zsh/         # Shell configuration (Zim framework)
