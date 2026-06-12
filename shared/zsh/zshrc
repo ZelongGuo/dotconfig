@@ -47,7 +47,7 @@ fi
 # -------------------------------------------------------------------
 # Load common/shared configuration modules
 # -------------------------------------------------------------------
-for file in env aliases vim_keybindings tmux fzf_completion; do
+for file in env aliases vim_keybindings tmux fzf_completion model-switcher; do
     source "$ZSH_DIR/${file}.zsh"
 done
 
