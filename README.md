@@ -15,8 +15,9 @@ Cross-platform CLI toolchain and configuration files for macOS and Linux.
 │   ├── tmux/        # Terminal multiplexer + powerline
 │   ├── yazi/        # Modern file manager (themes, plugins)
 │   └── zsh/         # Shell configuration (Zim framework)
-│       ├── zimrc     # Zim module configuration
-│       └── zshrc     # Main shell config
+│       ├── zimrc            # Zim module configuration
+│       ├── zshrc            # Main shell config
+│       └── model-switcher.zsh  # Claude Code model switcher
 ├── macos/           # macOS-specific configs → ~/.config/
 │   ├── aerospace/   # Tiling window manager
 │   ├── kitty/       # Terminal emulator
@@ -109,6 +110,24 @@ Uses the **Zim framework** for modular Zsh configuration:
   - `zsh-autopair` - Auto-close brackets/quotes
   - `k` - Like `ls`
   - `zsh-z` - Smart directory jumping
+
+### Claude Code Model Switcher
+
+Switch between multiple LLM providers (DeepSeek, Zhipu, MiMo, Claude) without maintaining
+duplicate config files. Uses a base+fragment architecture: shared config lives in
+`~/.claude/settings-base.json`, each model has a lightweight `~/.claude/models/<name>.json`
+fragment (env + model field only). These are deep-merged into `~/.claude/settings.json` at
+switch time.
+
+```bash
+ccuse           # fzf interactive model picker
+ccuse deepseek  # direct switch
+cclist          # list all models, highlight current
+ccsync          # persist runtime changes (plugins etc.) back to base
+```
+
+Dependencies: `jq`, `fzf` (both in Brewfile). Full documentation in
+`~/.claude/models/README.md`.
 
 ### Terminal (Kitty + Tmux)
 
