@@ -15,9 +15,9 @@ Cross-platform CLI toolchain and configuration files for macOS and Linux.
 │   ├── tmux/        # Terminal multiplexer + powerline
 │   ├── yazi/        # Modern file manager (themes, plugins)
 │   └── zsh/         # Shell configuration (Zim framework)
-│       ├── zimrc            # Zim module configuration
-│       ├── zshrc            # Main shell config
-│       └── model-switcher.zsh  # Claude Code model switcher
+│       ├── zimrc         # Zim module configuration
+│       ├── zshrc         # Main shell config
+│       └── ai-cli.zsh    # Claude/Codex model and Conda launchers
 ├── macos/           # macOS-specific configs → ~/.config/
 │   ├── aerospace/   # Tiling window manager
 │   ├── kitty/       # Terminal emulator
@@ -111,23 +111,33 @@ Uses the **Zim framework** for modular Zsh configuration:
   - `k` - Like `ls`
   - `zsh-z` - Smart directory jumping
 
-### Claude Code Model Switcher
+### AI CLI Launcher
 
-Switch between multiple LLM providers (DeepSeek, Zhipu, MiMo, Claude) without maintaining
-duplicate config files. Uses a base+fragment architecture: shared config lives in
-`~/.claude/settings-base.json`, each model has a lightweight `~/.claude/models/<name>.json`
-fragment (env + model field only). These are deep-merged into `~/.claude/settings.json` at
-switch time.
+`shared/zsh/ai-cli.zsh` provides one shell interface for Claude Code and Codex
+CLI while keeping application settings, model-provider credentials, and Python
+runtime environments separate.
+
+Claude provider profiles (DeepSeek, Zhipu, MiMo, Claude) live in
+`~/.claude/models/<name>.json`. `ccuse` selects a profile interactively with
+fzf and stores only its name in `~/.claude/.current-model`. Claude launchers
+inject the selected profile when the process starts; they never generate or
+modify `~/.claude/settings.json`. Status Line, plugin, and permission settings
+remain in that standard Claude Code settings file.
+
+Claude Code and Codex CLI run in temporary Conda-enabled subshells. Their shell
+commands and subagents inherit the selected environment, while the original
+Tmux pane remains unchanged after the CLI exits.
 
 ```bash
-ccuse           # fzf interactive model picker
-ccuse deepseek  # direct switch
-cclist          # list all models, highlight current
-ccsync          # persist runtime changes (plugins etc.) back to base
+ccuse       # Select a Claude provider interactively with fzf
+cc          # Claude Code: selected provider + Conda temp
+ccseislip   # Claude Code: selected provider + Conda seislip
+cx          # Codex CLI: Conda temp
+cxseislip   # Codex CLI: Conda seislip
 ```
 
-Dependencies: `jq`, `fzf` (both in Brewfile). Full documentation in
-`~/.claude/models/README.md`.
+Dependencies: Conda, `jq`, and `fzf`. Full implementation and usage
+documentation is available in `~/.claude/models/README.md`.
 
 ### Terminal (Kitty + Tmux)
 
