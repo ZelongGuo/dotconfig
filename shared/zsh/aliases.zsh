@@ -14,9 +14,6 @@ alias t2='tmux new -s 2'
 # alias python='python3' # /opt/homebrew/bin/python3 also usr/bin
 # alias pip='pip3'       # /opt/homebrew/bin/pip3 also usr/bin
 
-# Claude Code
-alias cc='claude code'
-
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	command yazi "$@" --cwd-file="$tmp"
