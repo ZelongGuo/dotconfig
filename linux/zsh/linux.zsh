@@ -39,13 +39,6 @@ export PATH=/usr/local/texlive/2026/bin/x86_64-linux:$PATH
 # export PROJ_LIB=$GMTHOME/share/proj
 
 # -------------------------------------------------------------------
-# --- Proxy Configuration (if needed) ---
-# Uncomment and adjust for your proxy setup
-# export https_proxy=http://127.0.0.1:7890
-# export http_proxy=http://127.0.0.1:7890
-
-
-# -------------------------------------------------------------------
 # --- Git Proxy Auto Config (Mihomo Party / Clash) ---
 # Auto test if clash (mihomo party) is running, if so, configuring the proxy for git
 
@@ -67,4 +60,12 @@ setup_git_proxy() {
 }
 
 setup_git_proxy
+
+# -------------------------------------------------------------------
+# --- Claude Code / Codex Proxy Config ---
+# Search "proxy" in Mac system setting and config as blow
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890
+
+
+
 
