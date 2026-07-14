@@ -23,6 +23,9 @@ shared/nvim/
 *.pyc
 *.pyo
 
+# Local NAS credentials (track only nas-credentials.example)
+linux/nas/nas-credentials
+
 findings.md
 progress.md
 task_plan.md

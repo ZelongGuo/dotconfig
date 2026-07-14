@@ -1,0 +1,3 @@
+# Copy the following line to /etc/fstab after installing cifs-utils.
+# Connection details stay in the system filesystem configuration.
+//192.168.3.2/home /home/zelong/mnt/nas/home cifs noauto,users,_netdev,credentials=/home/zelong/.config/samba/nas-credentials,uid=1000,gid=1000,iocharset=utf8,vers=3.1.1,noserverino,file_mode=0600,dir_mode=0700 0 0
