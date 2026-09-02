@@ -11,8 +11,9 @@ after-login-command = []
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 # after-startup-command = []
 # after-startup-command = ['exec-and-forget borders active_color=0xff21dc47 inactive_color=0xffe1e3e4  width=10.0']
-after-startup-command = ['exec-and-forget borders active_color=0xBF0BF4E4 inactive_color=0xBFe1e3e4  width=8.0']
-# after-startup-command = ['exec-and-forget borders active_color=0xBFF87E63 inactive_color=0xBFe1e3e4  width=8.0']
+# after-startup-command = ['exec-and-forget borders active_color=0xBF0BF4E4 inactive_color=0xBFe1e3e4  width=8.0']
+after-startup-command = ['exec-and-forget borders active_color=0xBFF87E63 inactive_color=0xBFe1e3e4  width=8.0']
+# after-startup-command = ['exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xffe1e3e4  width=8.0']
 # after-startup-command = ['exec-and-forget borders active_color=0xBF63F3F8 inactive_color=0xBFe1e3e4  width=8.0']
 
 # Start AeroSpace at login
