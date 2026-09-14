@@ -55,29 +55,33 @@ export GMT_DATA_SERVER=https://mirrors.ustc.edu.cn/gmtdata
 export conda="/Users/zelong/opt/miniconda3/etc/profile.d/conda.sh"
 
 # -------------------------------------------------------------------
+# If you use clash party or Mihomo Party, uncomment below
 # --- Git Proxy Auto Config (Mihomo Party / Clash) ---
 # Auto test if clash (mihomo party) is running, if so, configuring the proxy for git
 
-setup_git_proxy() {
-    # The local port is 14122
-    local local_port=14122
-    # The default clash port is 7890
-    local clash_port=7890
+# setup_git_proxy() {
+#     # The local port is 14122
+#     local local_port=14122
+#     # The default clash port is 7890
+#     local clash_port=7890
 
-    if lsof -i tcp:$local_port -sTCP:LISTEN >/dev/null 2>&1; then
-        git config --global http.proxy "http://127.0.0.1:$clash_port"
-        git config --global https.proxy "http://127.0.0.1:$clash_port"
-        # echo "[Git Proxy] enabled! (http://127.0.0.1:$clash_port)"
-    else
-        git config --global --unset http.proxy >/dev/null 2>&1
-        git config --global --unset https.proxy >/dev/null 2>&1
-        # echo "[Git Proxy] disabled!（clash is not running now）"
-    fi
-}
+#     if lsof -i tcp:$local_port -sTCP:LISTEN >/dev/null 2>&1; then
+#         git config --global http.proxy "http://127.0.0.1:$clash_port"
+#         git config --global https.proxy "http://127.0.0.1:$clash_port"
+#         # echo "[Git Proxy] enabled! (http://127.0.0.1:$clash_port)"
+#     else
+#         git config --global --unset http.proxy >/dev/null 2>&1
+#         git config --global --unset https.proxy >/dev/null 2>&1
+#         # echo "[Git Proxy] disabled!（clash is not running now）"
+#     fi
+# }
 
-setup_git_proxy
+# setup_git_proxy
 
 # -------------------------------------------------------------------
-# --- Claude Code / Codex Proxy Config ---
+# If you use clash party or Mihomo Party, Boostnet, uncomment below
 # Search "proxy" in Mac system setting and config as blow
-export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890
+# --- Claude Code / Codex Proxy Config ---
+# export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890
+# --- Boostnet ---
+export https_proxy=http://127.0.0.1:7892 http_proxy=http://127.0.0.1:7892
