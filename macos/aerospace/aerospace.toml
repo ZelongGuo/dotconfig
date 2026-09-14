@@ -130,7 +130,7 @@ alt-t = 'workspace T'   # Terminal
 alt-z = 'workspace Z'   # Zotero
 alt-s = 'workspace S'   # Stickies
 alt-m = 'workspace M'   # Mail
-alt-c = 'workspace C'   # Mihomo Party
+alt-c = 'workspace C'   # Mihomo Party and Boostnet
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 # alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
@@ -206,8 +206,13 @@ if.app-id = 'party.mihomo.app'
 run = "move-node-to-workspace C"
 
 [[on-window-detected]]
+if.app-id = 'com.boost.net'
+# run = "move-node-to-workspace C"
+run = "layout floating"
+
+[[on-window-detected]]
 if.app-id = 'com.apple.mail'
-run = "move-node-to-workspace M"
+run = ["move-node-to-workspace M"]
 
 #1 # Float or Accordion
 #1 [[on-window-detected]]
