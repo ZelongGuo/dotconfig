@@ -39,33 +39,49 @@ export PATH=/usr/local/texlive/2026/bin/x86_64-linux:$PATH
 # export PROJ_LIB=$GMTHOME/share/proj
 
 # -------------------------------------------------------------------
-# --- Git Proxy Auto Config (Mihomo Party / Clash) ---
-# Auto test if clash (mihomo party) is running, if so, configuring the proxy for git
+# --- Git Proxy Auto Config (optional) ---
+# Only needed for GUI git clients that do not inherit the shell environment.
+# Terminal git is already covered by the http_proxy/https_proxy exports further
+# down, so leave this commented out unless you actually use such a client.
+# Auto-detects whether the proxy is running and configures git accordingly.
 
-setup_git_proxy() {
-    # The local port is 14122
-    local local_port=14122
-    # The default clash port is 7890
-    local clash_port=7890
+# setup_git_proxy() {
+#     # The local port is 14122
+#     local local_port=14122
+#     # The default clash port is 7890
+#     local clash_port=7890
 
-    if lsof -i tcp:$local_port -sTCP:LISTEN >/dev/null 2>&1; then
-        git config --global http.proxy "http://127.0.0.1:$clash_port"
-        git config --global https.proxy "http://127.0.0.1:$clash_port"
-        # echo "[Git Proxy] enabled! (http://127.0.0.1:$clash_port)"
-    else
-        git config --global --unset http.proxy >/dev/null 2>&1
-        git config --global --unset https.proxy >/dev/null 2>&1
-        # echo "[Git Proxy] disabled!（clash is not running now）"
-    fi
-}
+#     if lsof -i tcp:$local_port -sTCP:LISTEN >/dev/null 2>&1; then
+#         git config --global http.proxy "http://127.0.0.1:$clash_port"
+#         git config --global https.proxy "http://127.0.0.1:$clash_port"
+#         # echo "[Git Proxy] enabled! (http://127.0.0.1:$clash_port)"
+#     else
+#         git config --global --unset http.proxy >/dev/null 2>&1
+#         git config --global --unset https.proxy >/dev/null 2>&1
+#         # echo "[Git Proxy] disabled!（clash is not running now）"
+#     fi
+# }
 
-setup_git_proxy
+# setup_git_proxy
 
 # -------------------------------------------------------------------
-# --- Claude Code / Codex Proxy Config ---
-# Search "proxy" in Mac system setting and config as blow
-export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890
+# --- Proxy Config (BoostNet / Clash / Mihomo Party) ---
+# Set the port to your proxy client's mixed port:
+#   BoostNet     -> 7892  (currently in use)
+#   Mihomo Party -> 7890
+# export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890
+# These env vars cover CLI tools (git, curl, codex, ...). GUI apps use the
+# Linux desktop environment's system proxy settings instead.
+export https_proxy=http://127.0.0.1:7892 http_proxy=http://127.0.0.1:7892
 
+# LAN and local traffic must bypass the proxy. http_proxy is a blanket switch
+# that ignores the desktop environment's system-proxy exception list, so those
+# exceptions have to be restated here.
+# NOTE: only CIDR and suffix matching are supported -- write 192.168.0.0/16,
+# NOT 192.168.*, which silently fails to match and sends LAN traffic out to
+# the remote node (observed as HTTP 502 Bad Gateway).
+export no_proxy=localhost,127.0.0.1,::1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,.local
+export NO_PROXY="$no_proxy"
 
 
 

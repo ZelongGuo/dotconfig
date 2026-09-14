@@ -55,9 +55,12 @@ export GMT_DATA_SERVER=https://mirrors.ustc.edu.cn/gmtdata
 export conda="/Users/zelong/opt/miniconda3/etc/profile.d/conda.sh"
 
 # -------------------------------------------------------------------
-# If you use clash party or Mihomo Party, uncomment below
-# --- Git Proxy Auto Config (Mihomo Party / Clash) ---
-# Auto test if clash (mihomo party) is running, if so, configuring the proxy for git
+# --- Git Proxy Auto Config (optional) ---
+# Only needed for GUI git clients (VS Code, Fork, Tower) launched from Finder,
+# which do not inherit the shell environment. Terminal git is already covered
+# by the http_proxy/https_proxy exports further down, so leave this commented
+# out unless you actually use such a client.
+# Auto-detects whether the proxy is running and configures git accordingly.
 
 # setup_git_proxy() {
 #     # The local port is 14122
@@ -79,9 +82,21 @@ export conda="/Users/zelong/opt/miniconda3/etc/profile.d/conda.sh"
 # setup_git_proxy
 
 # -------------------------------------------------------------------
-# If you use clash party or Mihomo Party, Boostnet, uncomment below
-# Search "proxy" in Mac system setting and config as blow
-# --- Claude Code / Codex Proxy Config ---
+# --- Proxy Config (BoostNet / Clash / Mihomo Party) ---
+# Set the port to your proxy client's mixed port:
+#   BoostNet     -> 7892  (currently in use)
+#   Mihomo Party -> 7890
 # export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890
-# --- Boostnet ---
+# These env vars cover CLI tools (git, curl, codex, ...). GUI apps use the
+# macOS system proxy instead, which is configured separately under
+# System Settings > Network > Proxies.
 export https_proxy=http://127.0.0.1:7892 http_proxy=http://127.0.0.1:7892
+
+# LAN and local traffic must bypass the proxy. http_proxy is a blanket switch
+# that ignores the macOS system-proxy exception list (*.local, 192.168.*, ...),
+# so those exceptions have to be restated here.
+# NOTE: only CIDR and suffix matching are supported -- write 192.168.0.0/16,
+# NOT 192.168.*, which silently fails to match and sends LAN traffic out to
+# the remote node (observed as HTTP 502 Bad Gateway).
+export no_proxy=localhost,127.0.0.1,::1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,.local
+export NO_PROXY="$no_proxy"
