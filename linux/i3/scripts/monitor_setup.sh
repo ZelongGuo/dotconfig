@@ -11,8 +11,8 @@ SECONDARY=$(xrandr | grep " connected" | awk 'NR==2{print $1}')
 # Configure dual monitor setup
 setup_dual() {
     xrandr \
-        --output "$PRIMARY" --primary --mode 2560x1440 --pos 0x0 \
-        --output "$SECONDARY" --auto --right-of "$PRIMARY"
+        --output "$PRIMARY" --primary --auto --pos 0x0 \
+        --output "$SECONDARY" --auto --left-of "$PRIMARY"
 }
 
 # Change scales for 2K and 4K monitors for showing similar size text, if we do so, the resolution of
